@@ -7,8 +7,8 @@ if [ $USER_ID -ne 0 ]; then
    exit 1
 fi 
 
-echo "Instatlling Nginxxxx"
-dnf install nginx -y
+echo "Instatlling Nginx"
+dnf install nginxxxx -y
 
 if [ $? -ne 0 ]; then
    echo "Installing Nginx is FAILURE"
