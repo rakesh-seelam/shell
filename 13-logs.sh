@@ -9,7 +9,7 @@ if [ $USERID -ne 0 ]; then
    exit 1
 fi
 
-mkdir -p $LOGS_FOLDER
+mkdir -p $LOG_FOLDER
 
 VALIDATE(){
     if [ $1 -ne 0 ]; then
