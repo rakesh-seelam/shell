@@ -9,7 +9,6 @@ if [ ! -d $LOG_DIR ]; then
 fi
 
 FILES_TO_DELETE=$(find $LOG_DIR -name "*.log" -mtime +14)
-echo "$FILES_TO_DELETE"
 
 while IFS= read -r line;
 do 
