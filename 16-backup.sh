@@ -58,7 +58,7 @@ else
    log "Archive name: $ZIP_FILE_NAME"
    tar -zcvf $ZIP_FILE_NAME $(find "$SOURCE_DIR" -name "*.log" -type f -mtime +$DAYS)
 
-   if [ -f ZIP_FILE_NAME ]; then
+   if [ -f $ZIP_FILE_NAME ]; then
     log -e "Archival $G success $N"
 
     while IFS= -r read filepath;
@@ -72,3 +72,16 @@ else
    fi
 fi
 
+# # Check archieve is success or not
+#     if [ -f $ZIP_FILE_NAME ]; then
+#         log "Archeival is ... $G SUCCESS $N"
+
+#         while IFS= read -r filepath; do
+#         # Process each line here
+#         log "Deleting file: $filepath"
+#         rm -f $filepath
+#         log "Deleted file: $filepath"
+#         done <<< $FILES
+#     else
+#         log "Archeival is ... $R FAILURE $N"
+#         exit 1
