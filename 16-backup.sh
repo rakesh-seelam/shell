@@ -11,7 +11,7 @@ SOURCE_DIR=$1
 DEST_DIR=$2
 DAYS={3:-14} #default days 14
 
-if [ USERID -ne 0 ]; then
+if [ $USERID -ne 0 ]; then
    echo -e "$R Run this script as root user $N"
    exit 1
 fi
