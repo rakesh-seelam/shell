@@ -11,12 +11,17 @@ SOURCE_DIR=$1
 DEST_DIR=$2
 DAYS=${3:-14} #Default is 14days
 
+
 if [ $USERID -ne 0 ]; then
    echo -e "$R Run this scritp as Root User $N"
    exit 1
 fi 
 
 mkdir -p $LOGS_FOLDER
+
+log(){
+   echo -e "$(date "+%Y-%m-%d %H:%M:%S") | $1" | tee -a $LOGS_FILE
+}
 
 USAGE(){
     echo -e "$R Usage: <SOURCE_DIR> <DEST_DIR> <DAYS>[Default 14]"
@@ -35,6 +40,18 @@ fi
 if [ ! -d "${DEST_DIR}" ]; then
    echo -e " $R Destination Directory $SOURCE_DIR does not exist $N"
    exit 1
+fi
+
+#Finding files 
+FILES=$(find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS)
+
+log "Backup started"
+log "Source Directory: $SOURCE_DIR"
+log "Destination Directory: $DEST_DIR"
+log "$DAYS"
+
+if [ z $"{FILES}"]; then
+   log "No files found $Y Skipping $N"
 fi
 
 
