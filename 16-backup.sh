@@ -49,7 +49,7 @@ log "Source Directory: $SOURCE_DIR"
 log "Destination Directory: $DEST_DIR"
 log "$DAYS"
 
-if [ z "$FILES" ]; then
+if [ -z "${FILES}" ]; then
    echo -e "No files to backup $Y SKIPPING $N "
 else
    echo -e "$G Files found for Archive $N"
@@ -61,7 +61,7 @@ else
    if [ -f $ZIP_FILE_NAME ]; then
     log -e "Archival $G success $N"
 
-    while IFS= -r read filepath;
+    while IFS= read -r filepath;
     do
       log "Deleting file: $filepath"
       rm -f $filepath
