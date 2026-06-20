@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOG_DIR=/home/ec2-user/app_logs
+LOG_DIR=/home/ec2-user
 LOG_FILE="$APP_DIR/$0.log"
 
 if [ ! -d $LOG_DIR ]; then
