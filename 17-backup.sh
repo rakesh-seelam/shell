@@ -13,6 +13,7 @@ DAYS=${3:-14} #Default is 14days
 
 if [ $USERID -ne 0 ]; then
    echo -e "$R Run this scritp as Root User $N"
+   exit 1
 fi 
 
 mkdir -p $LOGS_FOLDER
