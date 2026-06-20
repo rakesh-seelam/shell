@@ -24,7 +24,7 @@ log(){
 }
 
 USAGE(){
-    echo -e "$R Usage: <SOURCE_DIR> <DEST_DIR> <DAYS>[Default 14]"
+    log -e "$R Usage: <SOURCE_DIR> <DEST_DIR> <DAYS>[Default 14]"
     exit 1
 }
 
@@ -33,12 +33,12 @@ if [ $# -lt 2 ]; then
 fi
 
 if [ ! -d "${SOURCE_DIR}" ]; then
-   echo -e " $R Source Directory $SOURCE_DIR does not exist $N"
+   log -e " $R Source Directory $SOURCE_DIR does not exist $N"
    exit 1
 fi
 
 if [ ! -d "${DEST_DIR}" ]; then
-   echo -e " $R Destination Directory $SOURCE_DIR does not exist $N"
+   log -e " $R Destination Directory $SOURCE_DIR does not exist $N"
    exit 1
 fi
 
@@ -56,15 +56,16 @@ else
    log "Files found to archive: $FILES"
    TIME_STAMP=$(date +%F-%H-%M-%S)
    ZIP_FILE_NAME=$DEST_DIR/app_logs-$TIME_STAMP.tar.gz
+   log "archive name: $ZIP_FILE_NAME" 
    tar -zvcf $ZIP_FILE_NAME $(find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS)
 
    if [ -f $ZIP_FILE_NAME ]; then
       log "Archival is $G SUCCESS $N "
       
       while IFS= read -r filepath; do
-         echo "Deleting log $filepath"
-         rm -r $filepath
-         echo "Deleted log $filepath"
+         log "Deleting log $filepath"
+         rm -f $filepath
+         log "Deleted log $filepath"
       done <<< $FILES
    else 
       log "Archival is $R FAILURE $N"
