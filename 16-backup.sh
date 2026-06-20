@@ -24,3 +24,12 @@ USAGE(){
 if [ $# -lt 2 ]; then
    USAGE
 fi
+
+if [ -d SOURCE_DIR ]; then
+   echo -e "$R Source directory: $SOURCE_DIR does not exist $N"
+fi
+
+if [ -d DEST_DIR_DIR ]; then
+   echo -e "$R Destination directory: $DEST_DIR does not exist $N"
+fi
+
