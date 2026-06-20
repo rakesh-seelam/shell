@@ -30,9 +30,14 @@ if [ ! -d "$SOURCE_DIR" ]; then
    exit 1
 fi
 
-if [ ! -d "$DEST_DIR_DIR" ]; then
-   echo -e "$R Destination directory: $DEST_DIR does not exist $N"
-   exit 1
+# if [ ! -d "$DEST_DIR_DIR" ]; then
+#    echo -e "$R Destination directory: $DEST_DIR does not exist $N"
+#    exit 1
+# fi
+
+if [ ! -d "$DEST_DIR" ]; then
+    echo -e "$R Destination Directory:  $DEST_DIR does not exist $N"
+    exit 1
 fi
 
 
