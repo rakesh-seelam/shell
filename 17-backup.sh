@@ -50,7 +50,7 @@ log "Source Directory: $SOURCE_DIR"
 log "Destination Directory: $DEST_DIR"
 log "$DAYS"
 
-if [ z "${FILES}"]; then
+if [ z "${FILES}" ]; then
    log "No files found $Y Skipping $N"
 else
    log "Files found to archive: $FILES"
@@ -58,7 +58,7 @@ else
    ZIP_FILE_NAME=$DEST_DIR/app_logs-$TIME_STAMP.tar.gz
    tar -zvcf $ZIP_FILE_NAME $(find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS)
 
-   if [ f $ZIP_FILE_NAME ]; then
+   if [ -f $ZIP_FILE_NAME ]; then
       log "Archival is $G SUCCESS $N "
       
       while IFS= read -r filepath; do
