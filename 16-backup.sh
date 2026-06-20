@@ -71,17 +71,3 @@ else
     log -e "Archival $R Failure $N"
    fi
 fi
-
-# # Check archieve is success or not
-#     if [ -f $ZIP_FILE_NAME ]; then
-#         log "Archeival is ... $G SUCCESS $N"
-
-#         while IFS= read -r filepath; do
-#         # Process each line here
-#         log "Deleting file: $filepath"
-#         rm -f $filepath
-#         log "Deleted file: $filepath"
-#         done <<< $FILES
-#     else
-#         log "Archeival is ... $R FAILURE $N"
-#         exit 1
