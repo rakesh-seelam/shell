@@ -43,7 +43,6 @@ fi
 
 #Checks if files are there in $SOURCE_DIR
 FILES=$(find "$SOURCE_DIR" -name "*.log" -type f -mtime +$DAYS)
-#FILES=$(find "$SOURCE_DIR" -name "*.log" -type f -mtime +$DAYS)
 
 log "Backup started"
 log "Source Directory: $SOURCE_DIR"
@@ -52,5 +51,24 @@ log "$DAYS"
 
 if [ z $FILES ]; then
    echo -e "No files to backup $Y SKIPPING $N "
+else
+   echo -e "$G Files found for Archive $N"
+   TIME_STAMP=$(date +%F-%H-%M-%S)
+   ZIP_FILE_NAME="$DEST_DIR/app_logs-$TIME_STAMP.tar.gz"
+   log "Archive name: $ZIP_FILE_NAME"
+   tar -zcvf $ZIP_FILE_NAME $(find "$SOURCE_DIR" -name "*.log" -type f -mtime +$DAYS)
+
+   if [ -f ZIP_FILE_NAME ]; then
+    log -e "Archival $G success $N"
+
+    while IFS= -r read filepath;
+    do
+      log "Deleting file: $filepath"
+      rm -f $filepath
+      log "Deleted file: $filepath"
+    done <<< $FILES
+   else
+    log -e "Archival $R Failure $N"
+   fi
 fi
 
